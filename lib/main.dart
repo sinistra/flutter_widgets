@@ -8,19 +8,24 @@ class FmtApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: "MyApplication",
       home: new Scaffold(
-        body: new Container(
-//          color: Colors.pink,
-          child: new Text('this is a container'),
-          height: 300.0,
-          width: 300.0,
-          alignment: Alignment.center,
-          padding: const EdgeInsets.all(20.0),
-          decoration: new BoxDecoration(color: Colors.green),
-//          transform: new Matrix4.rotationZ(0.5),
-          foregroundDecoration: new BoxDecoration(
-            color: Colors.deepOrange,
-          ),
+        appBar: new AppBar(
+          title: new Text('Row & Column'),
+        ),
+        body: new Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            new Text('this'),
+            new Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                new Text('is'),
+                new Text('a'),
+              ],
+            ),
+            new Text('row'),
+          ],
         ),
       ),
     );
