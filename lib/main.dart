@@ -1,44 +1,41 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(new FmtApp());
+  runApp(new MaterialApp(home: new Application()));
 }
 
-class FmtApp extends StatefulWidget {
+class Application extends StatefulWidget {
   @override
-  _FmtAppState createState() => _FmtAppState();
+  _ApplicationState createState() => new _ApplicationState();
 }
 
-class _FmtAppState extends State<FmtApp> {
-  List<int> items = new List();
-
-  @override
-  void initState() {
-    for (int i=0; i < 50; i++) {
-      items.add(i);
-    }
-    super.initState();
-  }
-
-
-  @override
+class _ApplicationState extends State<Application> {
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      title: 'My App',
-      home: new Scaffold(
-        appBar: new AppBar(
-          title: new Text('Array List Widget'),
-        ),
-        body: new ListView.builder(
-          itemCount: items.length,
-          itemBuilder: (BuildContext context, int index) {
-            return new ListTile(
-              title: new Text('item # $index'),
-              trailing: new Icon(Icons.arrow_forward),
-            );
-          },
-        ),
-      ),
-    );
+    return new Scaffold(
+        body: new Stack(
+      alignment: Alignment.center,
+      children: <Widget>[
+        new Card(
+            color: Colors.pink,
+            child: new Padding(
+              padding: const EdgeInsets.all(200.0),
+            )),
+        new Card(
+            color: Colors.green,
+            child: new Padding(
+              padding: const EdgeInsets.all(100.0),
+            )),
+        new Card(
+            color: Colors.blue,
+            child: new Padding(
+              padding: const EdgeInsets.all(50.0),
+            )),
+        new Card(
+            color: Colors.yellow,
+            child: new Padding(
+              padding: const EdgeInsets.all(10.0),
+            )),
+      ],
+    ));
   }
 }
