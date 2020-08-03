@@ -6,22 +6,36 @@ void main() {
   );
 }
 
-class FmtApp extends StatelessWidget {
+class FmtApp extends StatefulWidget {
+  @override
+  _FmtAppState createState() => _FmtAppState();
+}
+
+class _FmtAppState extends State<FmtApp> {
+
+  String ttext = '';
+  @override
+  void initState() {
+    ttext = 'Click this button';
+    super.initState();
+  }
+
+  void changeButton() {
+    setState(() {
+      ttext = 'Button changed';
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      title: 'Stateless Widget',
-      home : new Scaffold(
-        body: new Container(
-          color: Colors.green,
-          child: new Container(
-            color: Colors.amber,
-            margin: EdgeInsets.all(60.0),
-          ),
+      title: 'Stateful widget',
+      home: new Scaffold(
+        body: new Center(
+          child: new RaisedButton(onPressed: () {changeButton();}, child: new Text(ttext, textDirection: TextDirection.ltr,),),
         ),
       )
     );
   }
 }
-
 
