@@ -10,30 +10,23 @@ class Application extends StatefulWidget {
 }
 
 class _ApplicationState extends State<Application> {
-  double svalue = 3.0;
+  bool swvalue = false;
 
-  void method1(val) {
+  void method2(val) {
     setState(() {
-      svalue = val;
-      print('$svalue');
+      swvalue = val;
+      print('$swvalue');
     });
   }
 
   Widget build(BuildContext context) {
     return new Scaffold(
-      body: new Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            new Slider(
-              value: svalue,
-              min: 1.0,
-              max: 10.0,
-              onChanged: (double value) {
-                method1(value);
-              }),
-            new Text('value=$svalue'),
-        ],
+        body: new Center(
+      child: new Switch(
+        value: swvalue,
+        onChanged: (bool swbool) {
+          method2(swbool);
+        },
       ),
     ));
   }
