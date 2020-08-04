@@ -10,20 +10,31 @@ class Application extends StatefulWidget {
 }
 
 class _ApplicationState extends State<Application> {
-  void dialog() {
-    showDialog(
-        context: context,
-        child: new AlertDialog(
-          title: new Text('Warning'),
-          content: new Text('Press the close button to dismiss this dialog'),
-          actions: <Widget>[
-            new IconButton(
-                icon: new Icon(Icons.close),
-                onPressed: () {
-                  Navigator.pop(context);
-                })
-          ],
-        ));
+  SimpleDialog sd;
+
+  _printmethod(val) {
+    print(val);
+  }
+
+  void _method1() {
+    sd = new SimpleDialog(
+      title: new Text('Title'),
+      children: <Widget>[
+        new SimpleDialogOption(
+          onPressed: () {
+            Navigator.pop(context, _printmethod('d1'));
+          },
+          child: new Text('Treasury department'),
+        ),
+        new SimpleDialogOption(
+          onPressed: () {
+            Navigator.pop(context, _printmethod('d2'));
+          },
+          child: const Text('State department'),
+        ),
+      ],
+    );
+    showDialog(context: context, child: sd);
   }
 
   Widget build(BuildContext context) {
@@ -31,9 +42,9 @@ class _ApplicationState extends State<Application> {
       body: new Center(
         child: new RaisedButton(
           onPressed: () {
-            dialog();
+            _method1();
           },
-          child: new Text('Show AlertDialog'),
+          child: new Text('Show Dialog'),
         ),
       ),
     );
