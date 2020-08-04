@@ -1,53 +1,62 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(new MaterialApp(home: new Application()));
-}
+void main() => runApp(new Application());
 
 class Application extends StatefulWidget {
   @override
   _ApplicationState createState() => new _ApplicationState();
 }
 
-class _ApplicationState extends State<Application> {
-  String msg = '';
+class _ApplicationState extends State<Application> with SingleTickerProviderStateMixin {
 
+  TabController controller;
+  @override
+  void initState() {
+    super.initState();
+    controller = new TabController(length: 3, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('Appbar'),
-        leading: new Icon(Icons.menu),
-        actions: <Widget>[
-          new IconButton(
-            icon: new Icon(Icons.arrow_forward),
-            onPressed: () {
-              setState(() {
-                msg = 'you pressed Arrow Button';
-              });
-              print('you pressed Arrow Button');
-            },
+    return  new MaterialApp(
+        title: "Application001",
+        home: new Scaffold(
+          appBar: new AppBar(title: new Text("Application001"),
+            bottom: new TabBar(
+                controller: controller,
+                tabs:[
+                  new Tab(text: "TAB 1a" ,),
+                  new Tab(text: "TAB 2a",),
+                  new Tab(text: "TAB 3a",),
+                ]),
+            backgroundColor: Colors.deepOrange,
           ),
-          new IconButton(
-              icon: new Icon(Icons.add),
-              onPressed: () {
-                setState(() {
-                  msg = 'you pressed Add Button';
-                });
-                print('you pressed Add Button');
-              }),
-          new IconButton(
-              icon: new Icon(Icons.close),
-              onPressed: () {
-                setState(() {
-                  msg = 'you pressed Close Button';
-                });
-                print('you pressed Close Button');
-              }),
-        ],
-      ),
-      body: new Center(
-        child: new Text(msg),
-      ),
+          bottomNavigationBar: new Material(
+            color: Colors.deepOrange,
+            child: new TabBar(
+                controller: controller,
+                tabs:[
+                  new Tab(text: "TAB 1b" ,),
+                  new Tab(text: "TAB 2b",),
+                  new Tab(text: "TAB 3b",),
+                ]),
+          ),
+
+          body:  new TabBarView(
+            controller: controller,
+            children: <Widget>[
+              new Center(child:new Text("Tab1 View 1") ,),
+              new Center(child:new Text("Tab1 View 2") ,),
+              new Center(child:new Text("Tab1 View 3") ,),
+            ],
+          ),
+        )
     );
   }
 }
