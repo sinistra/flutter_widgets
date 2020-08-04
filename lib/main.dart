@@ -10,23 +10,30 @@ class Application extends StatefulWidget {
 }
 
 class _ApplicationState extends State<Application> {
-  bool checkvalue = false;
+  double svalue = 3.0;
 
-  void method3(val) {
+  void method1(val) {
     setState(() {
-      checkvalue = val;
-      print('$checkvalue');
+      svalue = val;
+      print('$svalue');
     });
   }
 
   Widget build(BuildContext context) {
     return new Scaffold(
-        body: new Center(
-      child: new Checkbox(
-        value: checkvalue,
-        onChanged: (bool checkbool) {
-          method3(checkbool);
-        },
+      body: new Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            new Slider(
+              value: svalue,
+              min: 1.0,
+              max: 10.0,
+              onChanged: (double value) {
+                method1(value);
+              }),
+            new Text('value=$svalue'),
+        ],
       ),
     ));
   }
