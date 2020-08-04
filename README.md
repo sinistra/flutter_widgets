@@ -1,6 +1,8 @@
 # flutter_app
 
-A new Flutter application.
+This repo is an example of using various Flutter widgets.
+Each commit is an example for a different widget.
+To display, select main.dart and click 'show history'.
 
 ## Getting Started
 
