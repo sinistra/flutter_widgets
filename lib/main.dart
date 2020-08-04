@@ -10,22 +10,23 @@ class Application extends StatefulWidget {
 }
 
 class _ApplicationState extends State<Application> {
-  String ptext = 'Click me';
+  bool checkvalue = false;
 
-  void method1() {
+  void method3(val) {
     setState(() {
-      ptext = 'you clicked raised button';
+      checkvalue = val;
+      print('$checkvalue');
     });
   }
 
   Widget build(BuildContext context) {
     return new Scaffold(
         body: new Center(
-      child: new RaisedButton(
-        onPressed: () {
-          method1();
+      child: new Checkbox(
+        value: checkvalue,
+        onChanged: (bool checkbool) {
+          method3(checkbool);
         },
-        child: new Text(ptext),
       ),
     ));
   }
