@@ -12,40 +12,20 @@ class Application extends StatefulWidget {
 
 class _ApplicationState extends State<Application> {
 
-  List<int> _items = new List();
-
-  @override
-  void initState() {
-    for(int i=0;i<50;i++){
-      _items.add(i);
-      print(i);
-    }
-    print(_items);
-    super.initState();
-  }
-
-
   Widget build(BuildContext context) {
     return new Scaffold(
-        body: new GridView.builder(
-            gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4,),
-            itemCount: _items.length,
-            itemBuilder: (BuildContext context,int index){
-              return cards(index);
-            }
-        )
+      appBar: new AppBar(
+        title: new Text('Appbar'),
+        backgroundColor: Colors.green,
+        elevation: 30.0,
+        centerTitle: true,
+//        titleSpacing: 70.0,
+//        toolbarOpacity: 0.5,
+      ),
     );
   }
 }
 
-Widget cards(val){
-  return new Card(
-    color: Colors.pink,
-    child:new Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: new Text('$val'),
-    ),);
-}
 
 
 
