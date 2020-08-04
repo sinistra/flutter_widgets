@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 void main() {
   runApp(new MaterialApp(home: new Application()));
 }
@@ -11,32 +10,23 @@ class Application extends StatefulWidget {
 }
 
 class _ApplicationState extends State<Application> {
+  String ptext = 'Click me';
 
-  String ptext = '';
+  void method1() {
+    setState(() {
+      ptext = 'you clicked raised button';
+    });
+  }
 
   Widget build(BuildContext context) {
     return new Scaffold(
-        body: new Column(
-          children: <Widget>[
-            new TextField(
-                onSubmitted: (String tval) {
-                  setState(() {
-                    ptext = tval;
-                  });
-                }),
-            new Text(ptext)
-          ],
-        )
-    );
+        body: new Center(
+      child: new RaisedButton(
+        onPressed: () {
+          method1();
+        },
+        child: new Text(ptext),
+      ),
+    ));
   }
 }
-
-
-
-
-
-
-
-
-
-
