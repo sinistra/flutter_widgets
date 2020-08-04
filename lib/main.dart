@@ -1,62 +1,42 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(new Application());
+
+void main() {
+  runApp(new MaterialApp(home: new Application()));
+}
 
 class Application extends StatefulWidget {
   @override
   _ApplicationState createState() => new _ApplicationState();
 }
 
-class _ApplicationState extends State<Application> with SingleTickerProviderStateMixin {
+class _ApplicationState extends State<Application> {
 
-  TabController controller;
-  @override
-  void initState() {
-    super.initState();
-    controller = new TabController(length: 3, vsync: this);
-  }
+  String ptext = '';
 
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return  new MaterialApp(
-        title: "Application001",
-        home: new Scaffold(
-          appBar: new AppBar(title: new Text("Application001"),
-            bottom: new TabBar(
-                controller: controller,
-                tabs:[
-                  new Tab(text: "TAB 1a" ,),
-                  new Tab(text: "TAB 2a",),
-                  new Tab(text: "TAB 3a",),
-                ]),
-            backgroundColor: Colors.deepOrange,
-          ),
-          bottomNavigationBar: new Material(
-            color: Colors.deepOrange,
-            child: new TabBar(
-                controller: controller,
-                tabs:[
-                  new Tab(text: "TAB 1b" ,),
-                  new Tab(text: "TAB 2b",),
-                  new Tab(text: "TAB 3b",),
-                ]),
-          ),
-
-          body:  new TabBarView(
-            controller: controller,
-            children: <Widget>[
-              new Center(child:new Text("Tab1 View 1") ,),
-              new Center(child:new Text("Tab1 View 2") ,),
-              new Center(child:new Text("Tab1 View 3") ,),
-            ],
-          ),
+    return new Scaffold(
+        body: new Column(
+          children: <Widget>[
+            new TextField(
+                onSubmitted: (String tval) {
+                  setState(() {
+                    ptext = tval;
+                  });
+                }),
+            new Text(ptext)
+          ],
         )
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
