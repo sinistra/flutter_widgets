@@ -10,22 +10,30 @@ class Application extends StatefulWidget {
 }
 
 class _ApplicationState extends State<Application> {
-  final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
-
-  void _method1() {
-    _scaffoldkey.currentState
-        .showSnackBar(new SnackBar(content: new Text('Show the Snackbar')));
+  void dialog() {
+    showDialog(
+        context: context,
+        child: new AlertDialog(
+          title: new Text('Warning'),
+          content: new Text('Press the close button to dismiss this dialog'),
+          actions: <Widget>[
+            new IconButton(
+                icon: new Icon(Icons.close),
+                onPressed: () {
+                  Navigator.pop(context);
+                })
+          ],
+        ));
   }
 
   Widget build(BuildContext context) {
     return new Scaffold(
-      key: _scaffoldkey,
       body: new Center(
         child: new RaisedButton(
           onPressed: () {
-            _method1();
+            dialog();
           },
-          child: new Text('Activate Snackbar'),
+          child: new Text('Show AlertDialog'),
         ),
       ),
     );
